@@ -1,0 +1,24 @@
+{
+  "name": "open-api-test",
+  "version": "1.0.0",
+  "description": "云连OPENAPI测试",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "云连",
+    "OpenApi"
+  ],
+  "author": "Moonkin",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "body-parser": "^1.16.0",
+    "chalk": "^2.0.1",
+    "clipboard": "^1.7.1",
+    "express": "^4.14.0",
+    "oauth": "^0.9.15",
+    "request": "^2.79.0"
+  }
+}

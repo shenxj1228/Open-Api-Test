@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <title>HIPS-OpenApiTest</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/jquery.jsonview.min.css">
+	
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"
+                    aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">SendMessage</a>
+            </div>
+            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-2" aria-expanded="false" style="height: 1px;">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a target="_blank" href="https://open.hscloud.cn/openplat/index.html">恒生开放平台</a></li>
+                    <li><a target="_blank" href="http://10.253.100.182:8080/test">内网测试网站</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="jumbotron teaching">
+        <h1 style="color:#fff">如何工作？</h1>
+        <p style="color:#fff">在输入报文中写入类似水印的报文，系统通过将报文转换成JSON并发送给开发平台接口或直接发送FIX报文给服务器.</p>
+        <p><a class="btn btn-success btn-lg" href="/send.html">开 始 工 作</a></p>
+    </div>
+    <div style="padding: 0 10%;">
+        <section class="row col-info">
+            <div class="col-md-4">
+                <h1>易用</h1>
+                <p>无需关心token获取，报文根据日志采用竖线“|”分隔</p>
+            </div>
+            <div class="col-md-4">
+                <h1>清晰</h1>
+                <p>发送和应答结果采用JSONVIEW显示，简单明了</p>
+                <p>应答结果可以复制成各种格式方便使用</p>
+            </div>
+            <div class="col-md-4">
+                <h1>无干扰</h1>
+                <p>只是将输入输出报文转换格式，不会对测试结果产生其他额外干扰</p>
+            </div>
+        </section>
+        <section class="row ">
+            <div class="col-md-8" style="height:400px;">
+                <img style="display:block;margin:0px;border:0px;width:100%;height:100%" alt="" src="/images/input.png" />
+            </div>
+            <div class="col-md-4">
+                <h1>输入报文</h1>
+                <p>可以直接写入系统日志中的报文</p>
+                <p>或者自定义分隔符的报文</p>
+            </div>
+        </section>
+        <section class="row">
+            <div class="col-md-6">
+                <h1>请求报文体</h1>
+                <p>对输入的报文转换成JSON，发送给恒生开放平台</p>
+                <p>对输入的报文转换成FIX，发送给系统联机交易</p>
+            </div>
+            <div class="col-md-6" style="height:400px;">
+                <img style="display:block;margin:0px;border:0px;width:100%;height:100%" alt="" src="/images/request.png" />
+            </div>
+        </section>
+        <section class="row ">
+            <div class="col-md-6" style="height:400px;">
+                <img style="display:block;margin:0px;border:0px;width:100%;height:100%" alt="" src="/images/response.png" />
+            </div>
+            <div class="col-md-6">
+                <h1>应答报文体</h1>
+                <p>恒生开放平台对请求进行应答的报文，即需要的结果</p>
+            </div>
+        </section>
+    </div>
+    <div class="well">
+        <section class="row col-info about">
+            <div class="col-md-4">
+                <h1>关于我</h1>
+                <p>作者：Moonkin</p>
+                <p>目标：方便测试恒生开放平台接口</p>
+            </div>
+            <div class="col-md-4">
+                <h1>联系方式</h1>
+                <p>Email：498385753@qq.com</p>
+                <p>地址：B座12楼</p>
+            </div>
+            <div class="col-md-4">
+                <h1>其他</h1>
+                <p>感谢使用！</p>
+            </div>
+        </section>
+    </div>
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</body>
+
+</html>
