@@ -23,7 +23,9 @@
         }
         return Timing;
     })();
+
     var timing = new Timing('elapsedTime');
+
     jQuery(document).ready(function ($) {
         //获取url中seprule的值
         var sepRule = getUrlParam('seprule');
@@ -41,10 +43,6 @@
             $('#serverPort').val(port);
         });
 
-        //Timing的实例
-
-
-
         if (sepRule && Math.floor(sepRule) > -1 && Math.floor(sepRule) < 3) {
             $('.sep-rule label').removeClass('active');
             $('.sep-rule input[name="options"]').removeAttr('checked');
@@ -55,6 +53,7 @@
                 $('#customSep').removeClass('hidden');
             }
         }
+        //获取API接口
         $.get('/getFixApis', function (data) {
             $('#sendList').empty();
             data.forEach(function (ele, index) {
@@ -97,24 +96,27 @@
             $('#send-fix').attr('disabled', 'disabled');
             $('#send-dropdown').attr('disabled', 'disabled');
             //$('#elapsedTime').text('');
-            timing.start();
+
             if (sendType === '0') {
                 var data = dealData($('#request').val(), 'array');
-                if (data != '')
+                if (data != '') {
+                    timing.start();
                     sendToFix(data);
-                else
+                } else
                     returnData = false;
             } else if (sendType === '1') {
                 var data = dealData($('#request').val());
-                if (data != '')
+                if (data != '') {
+                    timing.start();
                     sendToOpenApi(data);
-                else
+                } else
                     returnData = false;
             } else if (sendType === '2') {
                 var data = dealData($('#request').val());
-                if (data != '')
+                if (data != '') {
+                    timing.start();
                     sendToSpecifyOpenApi(data);
-                else
+                } else
                     returnData = false;
             } else {
                 $('#send-fix').removeAttr('disabled');
@@ -317,8 +319,8 @@
         }
 
         var functionid = '',
-            r = {};
-        var x = [],
+            r = {},
+            x = [],
             y = [];
         data.forEach(function (ele) {
             if (ele.trim() != '') {
@@ -350,6 +352,8 @@
         }
 
     }
+
+    //监听复制按钮
     var clipboard = new Clipboard('.copy-tool-btn');
     clipboard.on('success', function (e) {
         console.info('Text:', e.text);

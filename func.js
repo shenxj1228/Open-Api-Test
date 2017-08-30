@@ -47,7 +47,7 @@ function getToken() {
  * [发送请求到指定接口]
  * @param  {String} apiAddress    [url中的接口最后一段]
  * @param  {String} contentObj [请求Body]
- * @param  {String} token      [令牌]
+ * @param  {String} file      [日志文件名称]
  */
 function submitToApi(apiAddress, contentObj, file) {
     //log.log('url:'+cfg.openApi.host + apiAddress+'\n'+'formData:'+JSON.stringify(contentObj));
@@ -74,7 +74,7 @@ function submitToApi(apiAddress, contentObj, file) {
                     log.error('重新获取令牌' + maxGetTokenCount + '次失败，请检查！！！');
                     process.exit();
                 }
-                log.warn(body.error_description + ' 重新获取令牌并发送');
+                log.warn(body.error_description + ' 重新获取令牌……发送……');
                 getToken()
                     .then(token => {
                         submitToApi(apiAddress, contentObj, file);
@@ -124,10 +124,10 @@ function getRequestBody(apiAddress, file, data) {
  * @returns {string} 接口地址
  */
 function getApiAddress(FunctionId) {
+    let address = '';
     if (FunctionId == undefined) {
-        return '';
+        return address;
     } else {
-        let address = '';
         Api.apis.some(function (ele) {
             if (ele.trans_code == FunctionId) {
                 address = ele.address;
@@ -140,13 +140,14 @@ function getApiAddress(FunctionId) {
 
 
 /**
- * 发送FIX报文
  * 
+ * 发送Fix
+ * @param {String} ip 服务器地址 
+ * @param {Number} port 服务器端口
  * @param {Object} req {keys:[_keys]，values:[_values]}字段数组和值数组 
  * @returns {Promise} resolve(应答信息)
  */
 function sendToFix(ip, port, req) {
-    //log.log(req);
     let fix = new FIX(ip, port);
     return fix.send(req.keys, req.values).then(res => {
         return res;

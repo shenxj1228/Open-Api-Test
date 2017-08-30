@@ -4,6 +4,6 @@
 配置：
 	1、打开config下index.js文件
 		配置：ClientID、ClientSecret、api的host
-	2、打开config下hips.js文件，配置接口，其中address是与配置1的api的host拼接作为一个交易的请求地址
+	2、打开config下Api.js文件，配置接口，其中address是与配置1的api的host拼接作为一个交易的请求地址
 运行：在命令行执行npm start
 备注:接口访问全采用POST方法

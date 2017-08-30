@@ -1,13 +1,13 @@
 {
   "name": "open-api-test",
   "version": "1.0.0",
-  "description": "云连OPENAPI测试",
+  "description": "OPENAPI或Fix测试",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "keywords": [
-    "云连",
+    "Fix",
     "OpenApi"
   ],
   "author": "Moonkin",
