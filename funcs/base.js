@@ -7,7 +7,7 @@
  * @returns {Number} 字符串字节长度
  */
 exports.getStrLength = function (str, encoding) {
-    return new Buffer(str, (encoding || 'utf8')).length;
+    return Buffer.from(str, (encoding || 'utf8')).length;
 }
 
 

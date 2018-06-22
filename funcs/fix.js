@@ -1,5 +1,5 @@
 "use strict";
-const log=require('./log');
+const log = require('./log');
 let {
     getStrLength,
     PrefixInteger,
@@ -40,16 +40,23 @@ class FIX {
         this.dealRecvData = function (res) {
             let data = res.body;
             let tmparray = strap(data.toString().substring(17), this.soh).split(this.soh);
-            let count = parseInt(tmparray.splice(0, 1)[0]);
-            tmparray.splice(0, 1);
-            let obj = {};
-            tmparray.some(function (ele, index) {
-                obj[ele] = tmparray[count + index];
-                return count + index >= tmparray.length - 1;
-            });
+            let filedCount = parseInt(tmparray.splice(0, 1)[0]);
+            let num = parseInt(tmparray.splice(0, 1)[0]);
+            let fileldArray = tmparray.splice(0, filedCount);
+            let
+                result, resultArray = [];
+            for (let i = 0; i < num; i++) {
+                let obj = {};
+                for (let j = 0; j < filedCount; j++) {
+                    obj[fileldArray[j]] = tmparray[j];
+                }
+                resultArray.push(obj);
+            }
+            result = (num === 1) ? resultArray[0] : resultArray;
+
             return {
                 elapsedTime: res.elapsedTime,
-                body: obj
+                body: result
             };
         }
     }

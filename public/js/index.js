@@ -243,10 +243,25 @@
         var strFix = '',
             strStr = '',
             strJson = '';
-        for (var key in data) {
-            strFix += key + '=' + data[key] + '\n';
-            strStr += key + '=' + data[key] + '|';
+        if (Array.isArray(data)) {
+            var lgh = data.length;
+            for (var i = 0; i < lgh; i++) {
+                if (i != 0 && i != lgh - 1) {
+                    strFix += '\n';
+                    strStr += '\n'
+                }
+                for (var key in data[i]) {
+                    strFix += key + '=' + data[i][key] + '\n';
+                    strStr += key + '=' + data[i][key] + '|';
+                }
+            }
+        } else {
+            for (var key in data) {
+                strFix += key + '=' + data[key] + '\n';
+                strStr += key + '=' + data[key] + '|';
+            }
         }
+
         $('#strJson').val(JSON.stringify(data).replace(/",/g, '",\n'));
         $('#strFix').val(strFix);
         $('#strStr').val(strStr);
