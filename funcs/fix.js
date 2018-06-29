@@ -50,6 +50,7 @@ class FIX {
                 for (let j = 0; j < filedCount; j++) {
                     obj[fileldArray[j]] = tmparray[j];
                 }
+                tmparray.splice(0, filedCount);
                 resultArray.push(obj);
             }
             result = (num === 1) ? resultArray[0] : resultArray;
@@ -75,7 +76,7 @@ class FIX {
         let port = this.port;
         let t = new TCP(host, port);
         let data = this.dealSendData(keys, values);
-        log.log(data);
+        //log.log(data);
         return t.send(data).then(res => {
             log.log(res.body);
             return this.dealRecvData(res);

@@ -43,15 +43,18 @@
             $('#serverPort').val(port);
         });
 
-        if (sepRule && Math.floor(sepRule) > -1 && Math.floor(sepRule) < 3) {
+
+        var ruleNum = Math.floor(sepRule);
+        if (sepRule && ruleNum > -1 && ruleNum < 3) {
             $('.sep-rule label').removeClass('active');
             $('.sep-rule input[name="options"]').removeAttr('checked');
-            $('.sep-rule input[name="options"]').eq(Math.floor(sepRule)).attr('checked', 'checked');
-            $('.sep-rule input[name="options"]').eq(Math.floor(sepRule)).parent().addClass('active');
-            if (Math.floor(sepRule) === 2) {
+            $('.sep-rule input[name="options"]').eq(ruleNum).attr('checked', 'checked');
+            $('.sep-rule input[name="options"]').eq(ruleNum).parent().addClass('active');
+            if (ruleNum === 2) {
                 $('#customSep').val(customSep);
                 $('#customSep').removeClass('hidden');
             }
+            setPlaceholder(ruleNum);
         }
         //获取API接口
         $.get('/getFixApis', function (data) {
@@ -147,6 +150,25 @@
 
 
     });
+
+
+    function setPlaceholder(type) {
+        var fixDemo = "FunctionId=200047|BankNo=00|BranchNo=001|Channel=G|TransDate=|TransTime=|MemoryType=1~2~3~4~5~6~7~8~9~10";
+        switch (Math.floor(type)) {
+            case 0:
+                $('#request').attr('placeholder', fixDemo);
+                break;
+            case 1:
+                var placeholder = fixDemo.replace(/\|/g, ' &#10; ');
+                $('#request').attr('placeholder', placeholder);
+                break;
+            case 2:
+                $('#request').attr('placeholder', fixDemo.replace(/|/g, $('#customSep').val()));
+                break;
+            default:
+
+        }
+    }
 
     /**
      * 发送至openapi接口
@@ -302,6 +324,7 @@
             paramUrl += '&customsep=' + $('#customSep').val();
         }
         history.pushState('', '', paramUrl);
+        setPlaceholder(sepRule);
     }
 
     /**

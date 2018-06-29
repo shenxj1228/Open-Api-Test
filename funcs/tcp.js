@@ -18,6 +18,7 @@ class TCP {
     constructor(host, port) {
         this.host = host;
         this.port = port;
+        this.data = ''
     }
     /**
      * @param {String} data 发送字符串
@@ -27,13 +28,13 @@ class TCP {
      */
     send(data) {
         return new Promise((resolve, reject) => {
-            let start = new Date(),
-                elapsedTime;
+            let start, elapsedTime;
             const client = net.connect({
                 host: this.host,
                 port: this.port
             }, () => {
                 start = new Date();
+                client.setEncoding('utf-8');
                 client.write(data);
             });
             client.on('error', (err) => {
@@ -45,14 +46,17 @@ class TCP {
                     body: err
                 });
             });
-            client.on('data', (data) => {
+            client.on('end', () => {
                 elapsedTime = new Date() - start;
                 client.destroy();
                 resolve({
                     elapsedTime: elapsedTime,
-                    body: data.toString('utf8')
+                    body: this.data //data.toString('utf8')
                 });
 
+            });
+            client.on('data', (data) => {
+                this.data += data;
             });
         });
 
